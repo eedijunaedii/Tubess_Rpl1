@@ -5,11 +5,15 @@
         LEFT JOIN daftar_menu ON daftar_menu.id = list_order.menu   
         GROUP BY id_list_order
         HAVING list_order.order = $_GET[order]");
+    $kode = $_GET['order'];
+    $meja = $_GET['meja'];
+    $pelanggan = $_GET['pelanggan'];
+
     while ($record = mysqli_fetch_array($query)) {
         $result[] = $record;
-        $kode = $record['kode_order'];
-        $meja = $record['meja'];
-        $pelanggan = $record['pelanggan'];
+        // $kode = $record['id_order'];
+        // $meja = $record['meja'];
+        // $pelanggan = $record['pelanggan'];
     }
 
     // $select_kat_menu = mysqli_query($conn, "SELECT id_kat_menu,kategori_menu FROM kategori_menu");
@@ -42,8 +46,8 @@
                  </div>
              </div>
          </div>
-         <!-- Modal Tambah menu baru -->
-         <div class="modal fade" id="ModalTambahUser" tabindex="-1" aria-labelledby="ModalTambahUser" aria-hidden="true">
+         <!-- Modal Tambah item -->
+         <div class="modal fade" id="TambahItem" tabindex="-1" aria-labelledby="TambahItem" aria-hidden="true">
              <div class="modal-dialog modal-xl modal-fullscreen-md-down">
                  <div class="modal-content">
                      <div class="modal-header">
@@ -125,7 +129,7 @@
                  </div>
              </div>
          </div>
-         <!-- akhir modal tambah menu baru -->
+         <!-- akhir modal tambah item -->
          <?php
             if (empty($result)) {
                 echo "Data Menu Makanan atau Minuman tidak ada";
@@ -373,12 +377,12 @@
                          </tr>
                      </tbody>
                  </table>
-                 <div class="mb-2">
-                    <button class="btn btn-success"><i class="bi bi-plus-circle"></i> Item</button>
-                    <button class="btn btn-primary"><i class="bi bi-cash-coin"></i> Bayar</button>
-                 </div>
              </div>
          <?php } ?>
+         <div class="mb-2">
+             <button class="btn btn-success btn-sm me-1" data-bs-toggle="modal" data-bs-target="#TambahItem"><i class="bi bi-plus-circle"></i> Item</button>
+             <button class="btn btn-primary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#Bayar<?php echo $row['id_order'] ?>"><i class="bi bi-cash-coin"></i> Bayar</button>
+         </div>
      </div>
  </div>
 
