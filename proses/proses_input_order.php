@@ -4,7 +4,6 @@ include "connect.php";
 $kode_order = (isset($_POST['kode_order'])) ? htmlentities($_POST['kode_order']) : "";
 $meja = (isset($_POST['meja'])) ? htmlentities($_POST['meja']) : "";
 $pelanggan = (isset($_POST['pelanggan'])) ? htmlentities($_POST['pelanggan']) : "";
-$catatan = (isset($_POST['catatan'])) ? htmlentities($_POST['catatan']) : "";
 
 
 if (!empty($_POST['input_order_validate'])) {
@@ -13,8 +12,8 @@ if (!empty($_POST['input_order_validate'])) {
         $message = '<script>alert("Order Yang Dimasukan Telah Ada")
         window.location="../?x=orderitem&order='.$kode_order.'"</script>';
     } else {
-        $query = mysqli_query($conn, "INSERT INTO tb_order (id_order,meja,pelanggan,catatan,pelayan)
-        values('$kode_order','$meja','$pelanggan','$catatan','$_SESSION[id_pakresto]')");
+        $query = mysqli_query($conn, "INSERT INTO tb_order (id_order,meja,pelanggan,pelayan)
+        values('$kode_order','$meja','$pelanggan','$_SESSION[id_pakresto]')");
         if ($query) {
             $message = '<script>alert("Data Order Berhasil Dimasukan")
         window.location="../?x=orderitem&order='.$kode_order.'&meja='.$meja.'&pelanggan='.$pelanggan.'"</script>';

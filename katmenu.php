@@ -76,7 +76,7 @@
                                      <div class="row">
                                          <div class="col-lg-6">
                                              <div class="form-floating mb-3">
-                                                 <select class="form-select" aria-label="Deafult select example" required name="jenius_menu" id="">
+                                                 <select class="form-select" aria-label="Deafult select example" required name="jenis_menu" id="">
                                                      <?php
                                                         $data = array("Makanan", "Minuman");
                                                         foreach ($data as $key => $value) {
@@ -147,7 +147,7 @@
                 ?>
                  <!-- Table Daftar Kategori Menu -->
                  <div class="table-responsive">
-                     <table class="table table-hover">
+                     <table class="table table-hover" id="example">
                          <thead>
                              <tr>
                                  <th scope="col">No</th>
@@ -178,5 +178,4 @@
              <?php } ?>
          </div>
      </div>
-
  </div>

@@ -1,11 +1,12 @@
  <?php
     include 'proses/connect.php';
     date_default_timezone_set('Asia/Jakarta');
-    $query = mysqli_query($conn, "SELECT tb_order.*,nama, SUM(harga * jumlah) AS harganya FROM tb_order
+    $query = mysqli_query($conn, "SELECT tb_order.*,bayar.*,nama, SUM(harga * jumlah) AS harganya FROM tb_order
         LEFT JOIN user ON user.id = tb_order.pelayan
         LEFT JOIN list_order ON list_order.kode_order = tb_order.id_order  
         LEFT JOIN daftar_menu ON daftar_menu.id = list_order.menu   
-        GROUP BY id_order");
+        LEFT JOIN bayar ON bayar.id_bayar = tb_order.id_order   
+        GROUP BY id_order ORDER BY waktu_order DESC");
     while ($record = mysqli_fetch_array($query)) {
         $result[] = $record;
     }
@@ -60,14 +61,6 @@
                                              <div class="invalid-feedback">
                                                  Masukkan Nama Pelanggan
                                              </div>
-                                         </div>
-                                     </div>
-                                 </div>
-                                 <div class="row">
-                                     <div class="col-lg12">
-                                         <div class="form-floating mb-3">
-                                             <input type="text" class="form-control" id="catatan" placeholder="Catatan" name="catatan">
-                                             <label for="catatan">Catatan</label>
                                          </div>
                                      </div>
                                  </div>
@@ -126,14 +119,6 @@
                                                  </div>
                                              </div>
                                          </div>
-                                         <div class="row">
-                                             <div class="col-lg12">
-                                                 <div class="form-floating mb-3">
-                                                     <input type="text" class="form-control" id="catatan" placeholder="Catatan" name="catatan" value="<?php echo $row['catatan'] ?>">
-                                                     <label for="catatan">Catatan</label>
-                                                 </div>
-                                             </div>
-                                         </div>
                                          <div class="modal-footer">
                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                              <button type="submit" class="btn btn-primary" name="edit_order_validate" value="12345">Simpan</button>
@@ -173,7 +158,7 @@
                     }
                     ?>
                  <div class="table-responsive">
-                     <table class="table table-hover">
+                     <table class="table table-hover" id="example">
                          <thead>
                              <tr class="text-nowrap">
                                  <th scope="col">No</th>
@@ -197,15 +182,15 @@
                                      <td><?php echo $row['id_order'] ?></td>
                                      <td><?php echo $row['pelanggan'] ?></td>
                                      <td><?php echo $row['meja'] ?></td>
-                                     <td><?php echo number_format((int)$row['harganya'],0,',','.') ?></td>
+                                     <td><?php echo number_format((int)$row['harganya'], 0, ',', '.') ?></td>
                                      <td><?php echo $row['nama'] ?></td>
-                                     <td><?php echo $row['status'] ?></td>
+                                     <td><?php echo (!empty($row['id_bayar'])) ? "<span class='badge text-bg-success'>Dibayar</span>" : "" ;  ?></td>
                                      <td><?php echo $row['waktu_order'] ?></td>
                                      <td>
                                          <div class="d-flex">
                                              <a class="btn btn-info btn-sm me-1" href="./?x=orderitem&order=<?php echo $row['id_order'] . "&meja=" . $row['meja'] . "&pelanggan=" . $row['pelanggan'] ?>"><i class="bi bi-eye"></i></a>
-                                             <button class="btn btn-warning btn-sm me-1" data-bs-toggle="modal" data-bs-target="#ModalEdit<?php echo $row['id_order'] ?>"><i class="bi bi-pencil-square"></i></button>
-                                             <button class="btn btn-danger btn-sm me-1" data-bs-toggle="modal" data-bs-target="#ModalDelet<?php echo $row['id_order'] ?>"><i class="bi bi-trash"></i></button>
+                                             <button class="<?php echo (!empty($row['id_bayar'])) ? " btn btn-secondary disabled" : "btn btn-warning" ?> btn-sm me-1" data-bs-toggle="modal" data-bs-target="#ModalEdit<?php echo $row['id_order'] ?>"><i class="bi bi-pencil-square"></i></button>
+                                             <button class="<?php echo (!empty($row['id_bayar'])) ? " btn btn-secondary disabled" : "btn btn-danger " ?> btn-sm me-1" data-bs-toggle="modal" data-bs-target="#ModalDelet<?php echo $row['id_order'] ?>"><i class="bi bi-trash"></i></button>
                                          </div>
                                      </td>
                                  </tr>
