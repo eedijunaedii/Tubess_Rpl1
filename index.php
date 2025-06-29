@@ -72,7 +72,7 @@
                     $page = "home.php";
                     include "main.php";
                 } 
-                }else if (isset($_GET['x']) && $_GET['x'] == 'kepuasan_pelanggan') { 
+                }else if (isset($_GET['x']) && $_GET['x'] == 'kepuasan') { 
                     if ($_SESSION['level_pakresto'] == 1 || $_SESSION['level_pakresto'] == 2) { 
                     $page = "kepuasan_pelanggan.php";
                     include "main.php";
@@ -81,14 +81,15 @@
                     include "main.php";
                     }
                 
-                } else if (isset($_GET['x']) && $_GET['x'] == 'report_penilaian') { // Tambahkan blok ini
-                    if ($_SESSION['level_pakresto'] == 1) {
-                    $page = "report_penilaian.php";
+                } else if (isset($_GET['x']) && $_GET['x'] == 'report2') { // Baris ini yang perlu ditambahkan
+                if ($_SESSION['level_pakresto'] == 1) { // Menyesuaikan dengan level akses di sidebar.php
+                    $page = "report2.php";
                     include "main.php";
                 } else {
                     $page = "home.php";
                     include "main.php";
                 }
+            
 
             } else {
                 $page = "home.php";

@@ -1,147 +1,100 @@
-/* assets/css/custom.css */
-
-/* Gaya bawaan Bootstrap/login.css yang sebelumnya ada di tag <style> */
-html, /* Tambahkan selector html di sini */
-.bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+/* Agar background full‐page tetap terlihat */
+html, body {
+  height: 100%;
+  margin: 0;
 }
-
-@media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-    }
-}
-
-.b-example-divider {
-    width: 100%;
-    height: 3rem;
-    background-color: rgba(0, 0, 0, .1); /* Menggunakan rgba untuk konsistensi */
-    border: solid rgba(0, 0, 0, .15);
-    border-width: 1px 0;
-    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-}
-
-.b-example-vr {
-    flex-shrink: 0;
-    width: 1.5rem;
-    height: 100vh;
-}
-
-.bi {
-    vertical-align: -.125em;
-    fill: currentColor;
-}
-
-.nav-scroller {
-    position: relative;
-    z-index: 2;
-    height: 2.75rem;
-    overflow-y: hidden;
-}
-
-.nav-scroller .nav {
-    display: flex;
-    flex-wrap: nowrap;
-    padding-bottom: 1rem;
-    margin-top: -1px;
-    overflow-x: auto;
-    text-align: center;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-}
-
-.bd-mode-toggle {
-    z-index: 1500;
-}
-
-.bd-mode-toggle .bi {
-    width: 1em;
-    height: 1em;
-}
-
-.bd-mode-toggle .dropdown-menu .active .bi {
-    display: block !important;
-}
-
-/* --- Custom styles for transparent background and form --- */
 body {
-    background-image: url('../sawah2.jpg'); /* Pastikan path ini benar dari custom.css */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    position: relative;
-    color: #fff; /* Default text color for the body */
+  background: url('../sawah2.jpg') center/cover no-repeat fixed;
+  position: relative;
+  font-family: Arial, sans-serif;
 }
 
+/* Lapisan gelap halus */
 body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0); /* Overlay gelap transparan. Sesuaikan jika ingin lebih gelap/terang. */
-    z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 0;
 }
 
+/* HANYA gaya untuk form-signin */
 .form-signin {
-    background-color: rgba(0, 0, 0, 0.7); /* Ini memberikan background semi-transparan hitam untuk form */
-    padding: 2rem; /* Sesuaikan padding agar form terlihat rapi */
-    border-radius: 0.5rem;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5); /* Beri sedikit bayangan agar form menonjol */
-    color: #fff; /* Warna teks di dalam form */
-    max-width: 330px; /* Lebar maksimum form, sama seperti yang sebelumnya */
+  position: relative;       /* supaya z-index bekerja */
+  z-index: 1;
+
+  max-width: 360px;
+  margin: 5% auto;
+  padding: 2rem;
+
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+
+  color: #fff;
 }
 
-.form-floating label {
-    color: #ccc; /* Warna label input */
+/* Icon dan judul */
+.form-signin .bi-shop-window {
+  display: block;
+  font-size: 3rem;
+  margin: 0 auto 1rem;
+}
+.form-signin h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
 }
 
-.form-control {
-    background-color: rgba(255, 255, 255, 0.1); /* Input fields transparan */
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+/* Input */
+.form-signin .form-floating {
+  margin-bottom: 1rem;
+}
+.form-signin .form-control {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  color: #fff;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.form-signin .form-control:focus {
+  background: rgba(255,255,255,0.3);
+  box-shadow: 0 0 0 0.2rem rgba(113,44,249,0.4);
+  outline: none;
+}
+.form-signin label {
+  color: rgba(255,255,255,0.7);
 }
 
-.form-control:focus {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    border-color: #712cf9;
-    box-shadow: 0 0 0 0.25rem rgba(113, 44, 249, 0.25);
+/* Checkbox dan tombol */
+.form-signin .form-check-label {
+  color: rgba(255,255,255,0.8);
+}
+.form-signin .btn-login {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  transition: transform 0.2s, background 0.3s;
+}
+.form-signin .btn-login:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
 }
 
-.invalid-feedback {
-    color: #ffc107; /* Warna pesan validasi */
-}
-
-
-
-.text-body-secondary {
-    color: rgba(255, 255, 255, 0.6) !important;
-}
-
-.bi-shop-window {
-    color: #fff;
-}
-
-/* Aturan tambahan untuk input dari login.css atau bawaan Bootstrap */
-.form-signin .form-floating:focus-within {
-    z-index: 2;
-}
-
-.form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+/* Copyright kecil */
+.form-signin .text-body-secondary {
+  display: block;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem !important;
+  color: rgba(255,255,255,0.6) !important;
 }

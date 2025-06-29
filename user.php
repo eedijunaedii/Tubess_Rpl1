@@ -180,9 +180,11 @@
                      <thead>
                          <tr>
                              <th scope="col">No</th>
-                             <th scope="col">Email</th>
                              <th scope="col">Nama</th>
                              <th scope="col">Username</th>
+                             <th scope="col">Level</th>
+                             <th scope="col">No.HP</th>
+                             <th scope="col">Aksi</th>
                          </tr>
                      </thead>
                      <tbody>
@@ -192,17 +194,31 @@
                             ?>
                              <tr>
                                  <th scope="row"><?php echo $no++ ?></th>
-                                 <td><?php echo $row['email'] ?></td>
                                  <td><?php echo $row['nama'] ?></td>
                                  <td><?php echo $row['username'] ?></td>
+                                 <td><?php
+                                        if ($row['level'] == 1) {
+                                            echo "Admin";
+                                        } elseif ($row['level'] == 2) {
+                                            echo "Kasir";
+                                        } elseif ($row['level'] == 3) {
+                                            echo "Pelayan";
+                                        } elseif ($row['level'] == 4) {
+                                            echo "Dapur";
+                                        }
+                                        ?></td>
+                                 <td><?php echo $row['nohp'] ?></td>
                                  <td class="d-flex">
                                      <button class="btn btn-info btn-sm me-1" data-bs-toggle="modal" data-bs-target="#ModalView<?php echo $row['id'] ?>"><i class="bi bi-eye"></i></button>
                                      <button class="btn btn-warning btn-sm me-1" data-bs-toggle="modal" data-bs-target="#ModalEdit<?php echo $row['id'] ?>"><i class="bi bi-pencil-square"></i></button>
-                                     <button class="btn btn-danger btn-sm me-1" data-bs-toggle="modal" data-bs-target="#ModalDelet<?php echo $row['id'] ?>"><i class="bi bi-trash"></i></button>
-                                     <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalResetPassword<?php echo $row['id'] ?>"><i class="bi bi-key-fill"></i></button>
+                                     <button class="btn btn-danger btn-sm me-1" data-bs-toggle="modal" data-bs-target="#ModalDelete<?php echo $row['id'] ?>"><i class="bi bi-trash"></i></button>
+                                     <button class="btn btn-secondary btn-sm " data-bs-toggle="modal" data-bs-target="#ModalResetPassword<?php echo $row['id'] ?>"><i class="bi bi-key"></i></button>
+
                                  </td>
                              </tr>
-                         <?php } ?>
+                         <?php
+                            }
+                            ?>
                      </tbody>
                  </table>
              </div>

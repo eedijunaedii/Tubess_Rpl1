@@ -80,7 +80,7 @@ $string_jumlah_pesanan = implode(',', $array_jumlah_pesanan);
     <!--Judul -->
     <div class="card mt-4 border-0 bg-light">
         <div class="card-body text-center">
-            <h5 class="card-title">PAK RESTO - APLIKASI PEMESANAN MAKANAN DAN MINUMAN</h5>
+            <h5 class="card-title">SIPENA - SISTEM INFORMASI PEMESANAN MAKANAN DAN MINUMAN</h5>
             <p class="card-text"> Aplikasi pemesanan makanan dan minuman yang mudah dan praktis.Nikmati beragam menu makanan
                 dan minuman favorit kalian dengan beberapa klik. Pesan, bayar dan lacak pesanan anda dengan mudah melalui
                 Aplikasi ini.

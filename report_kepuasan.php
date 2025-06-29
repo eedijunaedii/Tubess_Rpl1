@@ -1,10 +1,7 @@
 <?php
-    include 'proses/connect.php'; // Pastikan file connect.php sudah ada
+    include 'proses/connect.php'; 
+    date_default_timezone_set('Asia/Jakarta'); 
 
-    date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu sesuai lokasi Anda
-
-    // Query untuk mengambil data feedback kepuasan pelanggan
-    // JOIN dengan tb_order untuk mendapatkan nama pelanggan
     $query = mysqli_query($conn, "SELECT tkp.*, to.pelanggan,
                                  CASE tkp.rating_makanan
                                      WHEN 1 THEN 'Sangat Buruk'
