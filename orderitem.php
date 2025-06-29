@@ -1,6 +1,6 @@
  <?php
     include 'proses/connect.php';
-    $query = mysqli_query($conn, "SELECT *, SUM(harga * jumlah) AS harganya FROM list_order
+    $query = mysqli_query($conn, "SELECT *, SUM(harga * jumlah) AS harganya, tb_order.waktu_order FROM list_order
         LEFT JOIN tb_order ON tb_order.id_order = list_order.kode_order  
         LEFT JOIN daftar_menu ON daftar_menu.id = list_order.menu   
         LEFT JOIN bayar ON bayar.id_bayar = tb_order.id_order   
@@ -343,8 +343,96 @@
      <div class="mb-2">
          <button class="<?php echo (!empty($row['id_bayar'])) ? " btn btn-secondary disabled" : "btn btn-success" ?> btn-sm me-1" data-bs-toggle="modal" data-bs-target="#TambahItem"><i class="bi bi-plus-circle"></i> Item</button>
          <button class="<?php echo (!empty($row['id_bayar'])) ? " btn btn-secondary disabled" : "btn btn-primary" ?> btn-sm me-1" data-bs-toggle="modal" data-bs-target="#bayar"><i class="bi bi-cash-coin"></i> Bayar</button>
+         <button onclick="printstruk()" class="btn btn-info">Cetak Struk</button>
      </div>
  </div>
  </div>
 
  </div>
+ <div id="strukContent" class="d-none">
+     <style>
+         #struk {
+            font-family: "Arial", sans-serif;
+             font-size: 12px;
+             max-width: 300px;
+             border: 1px solid #000;
+             padding: 10px;
+             width: 80mm;
+             margin: auto;
+         }
+         #struk p{
+            margin: 5px;
+         }
+         #struk h2{
+            text-align: center;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 16px;
+         }
+         #struk table {
+             font-size: 12px;
+             border-collapse: collapse;
+             margin-top: 10px;
+             width: 100%;
+         }
+         #struk th, #struk td {
+            border: 1px solid #999;
+            padding: 6px;
+            font-size: 12px;
+            text-align: left;
+         }
+         #struk .total{
+            font-weight: bold;
+         }
+
+     </style>
+     <div id="struk">
+         <h2>Struk Pembayaran Pakresto</h2>
+         <p>Kode Order: <?php echo $kode ?></p>
+         <p>Meja:<?php echo $meja ?></p>
+         <p>Pelanggan:<?php echo $pelanggan ?></p>
+         <p>Waktu Order:<?php echo date('d/m/Y H:i:s', strtotime($result[0]['waktu_order'])) ?></p>
+
+         <table>
+             <thead>
+                 <tr>
+                     <th>Menu</th>
+                     <th>Harga</th>
+                     <th>Jumlah</th>
+                     <th>Total</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <?php
+                    $total = 0;
+                    foreach ($result as $row) { ?>
+                     <tr>
+                         <td><?php echo $row['nama_menu'] ?></td>
+                         <td><?php echo number_format($row['harga'], 0, ',', '.') ?></td>
+                         <td><?php echo $row['jumlah'] ?></td>
+                         <td><?php echo number_format($row['harganya'], 0, ',', '.') ?></td>
+                     </tr>
+                 <?php
+                        $total += $row['harganya'];
+                    } ?>
+                 <tr class="total">
+                     <td colspan="3">Total Harga</td>
+                     <td><?php echo number_format($total, 0, ',', '.') ?></td>
+                 </tr>
+             </tbody>
+         </table>
+     </div>
+ </div>
+
+ <script>
+     function printstruk() {
+         var strukContent = document.getElementById("strukContent").innerHTML;
+
+         var printFrame = document.createElement('iframe');
+         printFrame.style.display = 'none';
+         document.body.appendChild(printFrame);
+         printFrame.contentDocument.write(strukContent);
+         printFrame.contentWindow.print();
+         document.body.removeChild(printFrame);
+     }
+ </script>

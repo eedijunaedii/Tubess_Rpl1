@@ -4,7 +4,7 @@
                 $page = "home.php";
                 include "main.php";
             } else if (isset($_GET['x']) && $_GET['x'] == 'order') {
-                if ($_SESSION['level_pakresto'] == 1 || $_SESSION['level_pakresto'] == 3) {
+                if ($_SESSION['level_pakresto'] == 1 || $_SESSION['level_pakresto'] == 3 || $_SESSION['level_pakresto'] == 2) {
                     $page = "order.php";
                     include "main.php";
                 } else {
@@ -56,7 +56,7 @@
                     include "main.php";
                 }
             } else if (isset($_GET['x']) && $_GET['x'] == 'orderitem') {
-                if ($_SESSION['level_pakresto'] == 1 || $_SESSION['level_pakresto'] == 3) {
+                if ($_SESSION['level_pakresto'] == 1 || $_SESSION['level_pakresto'] == 3 || $_SESSION['level_pakresto'] == 2) {
                     $page = "orderitem.php";
                     include "main.php";
                 } else {
@@ -67,6 +67,23 @@
                 } else if (isset($_GET['x']) && $_GET['x'] == 'viewitem') {
                 if ($_SESSION['level_pakresto'] == 1) {
                     $page = "view_item.php";
+                    include "main.php";
+                } else {
+                    $page = "home.php";
+                    include "main.php";
+                } 
+                }else if (isset($_GET['x']) && $_GET['x'] == 'kepuasan_pelanggan') { 
+                    if ($_SESSION['level_pakresto'] == 1 || $_SESSION['level_pakresto'] == 2) { 
+                    $page = "kepuasan_pelanggan.php";
+                    include "main.php";
+                } else {
+                    $page = "home.php";
+                    include "main.php";
+                    }
+                
+                } else if (isset($_GET['x']) && $_GET['x'] == 'report_penilaian') { // Tambahkan blok ini
+                    if ($_SESSION['level_pakresto'] == 1) {
+                    $page = "report_penilaian.php";
                     include "main.php";
                 } else {
                     $page = "home.php";

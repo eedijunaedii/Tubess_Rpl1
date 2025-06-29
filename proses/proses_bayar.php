@@ -18,7 +18,7 @@ if (!empty($_POST['bayar_validate'])) {
         values('$kode_order','$uang','$total')");
         if ($query) {
             $message = '<script>alert("Pembayaran Berhasil Dilakukan \nUANG KEMBALIAN Rp. '.$kembalian.'");
-        window.location="../?x=orderitem&order=' . $kode_order . '&meja=' . $meja . '&pelanggan=' . $pelanggan . '"</script>';
+        window.location="../?x=kepuasan&order=' . $kode_order . '"</script>';
         } else {
             $message = '<script>alert("Pembayaran Gagal Dilakukan")
              window.location="../?x=orderitem&order=' . $kode_order . '&meja=' . $meja . '&pelanggan=' . $pelanggan . '" </script>';
