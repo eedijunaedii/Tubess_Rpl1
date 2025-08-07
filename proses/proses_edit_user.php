@@ -8,22 +8,24 @@ $nohp = (isset($_POST['nohp'])) ? htmlentities($_POST['nohp']) : "";
 $alamat = (isset($_POST['alamat'])) ? htmlentities($_POST['alamat']) : "";
 $password = md5('password');
 
-
-
 if (!empty($_POST['input_user_validate'])) {
-    $select = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
+    // Check if the username already exists for a DIFFERENT user.
+    $select = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username' AND id != '$id'");
+    
     if (mysqli_num_rows($select) > 0) {
         $message = '<script>alert("Username Yang Dimasukan Telah Ada")
         window.location="../user"</script>';
     } else {
-    $query = mysqli_query($conn, "UPDATE user SET nama='$name', username='$username', level='$level', nohp='$nohp', alamat='$alamat' WHERE id='$id'");
-    if ($query){
-        $message ='<script>alert("Data Berhasil DiUpdate")
-        window.location="../user"</script>';
+        $query = mysqli_query($conn, "UPDATE user SET nama='$name', username='$username', level='$level', nohp='$nohp', alamat='$alamat' WHERE id='$id'");
         
-    } else {
-        $message ='<script>alert("Data Gagal DiUpdate")
-        window.location="../user"</script>';
+        if ($query){
+            $message ='<script>alert("Data Berhasil DiUpdate")
+            window.location="../user"</script>';
+        } else {
+            $message ='<script>alert("Data Gagal DiUpdate")
+            window.location="../user"</script>';
+        }
     }
 }
-}echo $message;
+echo $message;
+?>

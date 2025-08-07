@@ -69,7 +69,6 @@
                                     <td><?php echo htmlspecialchars($row['komentar']); ?></td>
                                     <td>
                                         <?php
-                                            // Format waktu_submit untuk menghilangkan mikrodetik
                                             $tanggal_waktu_obj = new DateTime($row['waktu_submit']);
                                             echo $tanggal_waktu_obj->format('Y-m-d H:i:s');
                                         ?>

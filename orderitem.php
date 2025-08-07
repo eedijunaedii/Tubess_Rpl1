@@ -341,10 +341,11 @@
          </div>
      <?php } ?>
      <div class="mb-2">
-         <button class="<?php echo (!empty($row['id_bayar'])) ? " btn btn-secondary disabled" : "btn btn-success" ?> btn-sm me-1" data-bs-toggle="modal" data-bs-target="#TambahItem"><i class="bi bi-plus-circle"></i> Item</button>
-         <button class="<?php echo (!empty($row['id_bayar'])) ? " btn btn-secondary disabled" : "btn btn-primary" ?> btn-sm me-1" data-bs-toggle="modal" data-bs-target="#bayar"><i class="bi bi-cash-coin"></i> Bayar</button>
-         <button onclick="printstruk()" class="btn btn-info">Cetak Struk</button>
-     </div>
+    <button class="<?php echo (!empty($row['id_bayar'])) ? " btn btn-secondary disabled" : "btn btn-success" ?> btn-sm me-1" data-bs-toggle="modal" data-bs-target="#TambahItem"><i class="bi bi-plus-circle"></i> Item</button>
+    <?php if ($_SESSION['level_pakresto'] == 1 || $_SESSION['level_pakresto'] == 2) { ?>
+        <button class="<?php echo (!empty($row['id_bayar'])) ? " btn btn-secondary disabled" : "btn btn-primary" ?> btn-sm me-1" data-bs-toggle="modal" data-bs-target="#bayar"><i class="bi bi-cash-coin"></i> Bayar</button>
+        <button onclick="printstruk()" class="btn btn-info">Cetak Struk</button>
+    <?php } ?>
  </div>
  </div>
 

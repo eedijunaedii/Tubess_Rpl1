@@ -1,5 +1,5 @@
-# Aplikasi pemesanan Restoran (Pak Resto)
-Sebuah aplikasi yang dapat digunakan untuk pemesanan makanan dan minuman pada restoran, cafe, rumah makan atau sejenisnya 
+# Website Pemesanan Makanan Dan Minumana(SIPENA)
+Sebuah Website yang dapat digunakan untuk pemesanan makanan dan minuman pada restoran, cafe, rumah makan atau sejenisnya 
 
 # pemilik/admin (1)
     -Melihat laporan

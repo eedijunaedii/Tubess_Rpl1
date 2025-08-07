@@ -1,9 +1,8 @@
 <?php
-include 'proses/connect.php'; // Pastikan file connect.php sudah ada
+include 'proses/connect.php'; 
 
-date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu sesuai lokasi Anda
+date_default_timezone_set('Asia/Jakarta'); 
 
-// 3. Helper: fungsi untuk mengubah angka rating jadi teks
 if (! function_exists('getRatingText')) {
     /**
      * Ubah rating numerik (1–5) menjadi teks.
@@ -24,8 +23,6 @@ if (! function_exists('getRatingText')) {
     }
 }
 
-// Query untuk mengambil data feedback kepuasan pelanggan
-// Tanpa CASE WHEN di SQL, rating akan diambil dalam bentuk angka
 $query = mysqli_query($conn, "SELECT
                                  tb_kepuasan_pelanggan.id,
                                  tb_kepuasan_pelanggan.kode_order,

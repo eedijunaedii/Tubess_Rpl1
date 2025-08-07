@@ -1,24 +1,20 @@
 <?php
-    include 'proses/connect.php'; // Pastikan file connect.php sudah ada
+    include 'proses/connect.php'; 
 
-    // Ambil kode_order dari URL
     $kode_order = (isset($_GET['order'])) ? htmlentities($_GET['order']) : "";
 
-    $pelanggan = 'Pelanggan'; // Nilai default jika order tidak ditemukan atau nama pelanggan kosong
-    $order_found = false; // Flag untuk menandakan apakah order ditemukan
+    $pelanggan = 'Pelanggan'; 
+    $order_found = false; 
 
     if (!empty($kode_order)) {
-        // Ambil data pelanggan dari tabel tb_order berdasarkan kode_order
         $query_order = mysqli_query($conn, "SELECT pelanggan FROM tb_order WHERE id_order = '$kode_order'");
-        
-        // Periksa apakah query berhasil dan mengembalikan setidaknya satu baris
+
         if ($query_order && mysqli_num_rows($query_order) > 0) {
             $data_order = mysqli_fetch_array($query_order);
-            // Pastikan kolom 'pelanggan' tidak kosong sebelum menggunakannya
             if (!empty($data_order['pelanggan'])) {
                 $pelanggan = $data_order['pelanggan'];
             }
-            $order_found = true; // Set flag menjadi true karena order ditemukan
+            $order_found = true;
         }
     }
 ?>
@@ -29,7 +25,7 @@
             Kuesioner Kepuasan Pelanggan
         </div>
         <div class="card-body">
-            <?php if ($order_found) { // Tampilkan form jika order ditemukan ?>
+            <?php if ($order_found) { ?>
                 <h5 class="card-title">Halo, <?php echo $pelanggan; ?>!</h5>
                 <p class="card-text">Kami sangat menghargai waktu Anda untuk mengisi kuesioner ini. Pendapat Anda sangat penting bagi kami untuk terus meningkatkan pelayanan.</p>
                 <hr>
@@ -101,7 +97,7 @@
 
                     <button type="submit" class="btn btn-primary" name="submit_kepuasan" value="1">Kirim Feedback</button>
                 </form>
-            <?php } else { // Tampilkan pesan error jika order tidak ditemukan ?>
+            <?php } else { ?>
                 <div class="alert alert-danger" role="alert">
                     Informasi pesanan tidak ditemukan atau tidak valid. Pastikan Anda mengakses halaman ini setelah pembayaran yang sah.
                 </div>

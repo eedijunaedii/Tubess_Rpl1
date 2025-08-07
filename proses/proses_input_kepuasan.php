@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "connect.php"; // Pastikan path ini benar
+include "connect.php";
 
 $kode_order = (isset($_POST['kode_order'])) ? htmlentities($_POST['kode_order']) : "";
 $rating_makanan = (isset($_POST['rating_makanan'])) ? htmlentities($_POST['rating_makanan']) : "";
