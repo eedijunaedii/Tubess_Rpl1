@@ -23,3 +23,12 @@ Sebuah Website yang dapat digunakan untuk pemesanan makanan dan minuman pada res
     -menerima pesanan
     -konfirmasi terima pesanan
     -mengubah status pesanan "siap saji"
+
+Akses Login
+default password (12345) 
+default reset password (password)
+
+admin@admin.com -> 12345 (admin/pemilik)
+monnn@pakresto.com -> password (kasir)
+manda@pakresto.com -> password (pelayan)
+lucho@pakresto.com -> password (dapur)
